@@ -1,11 +1,15 @@
 #####
 #
 #This script is to process the data produced from the aln.sh file for the "Pseudomonas" project
+
 #Before this point, we have sequenced 49 genomes (two of which were removed from analysis due to contamination)
 #The aln.sh pipeline took the raw sequence data and processed it to the point of creating 
 #Variant Call Format (VCF) files following the GATK best processes at the time
 
-#This script largely follows the Bioconductor tools recommendations to go from the VCF format to SNP calling
+#The beginning of this script largely follows the Bioconductor tools 
+#recommendations to go from the VCF format to SNP calling
+
+#Later in this script we'll make a phylogenetic tree for visualizing the clutering patterns
 
 ########################################################################
 #Modified from "Tutorials for the R/Bioconductor Package SNPRelate
