@@ -1,6 +1,7 @@
-d#####
+#####
 #
 #This script is to process the data produced from the aln.sh file for the "Pseudomonas" project
+
 #Before this point, we have sequenced 49 genomes (two of which were removed from analysis due to contamination)
 #The aln.sh pipeline took the raw sequence data and processed it to the point of creating 
 #Variant Call Format (VCF) files following the GATK best processes at the time
@@ -26,8 +27,15 @@ d#####
 ########################################################################
 
 #Load the R packages: gdsfmt and SNPRelate
+
+#The packages may need to be downloaded from bioconductor if the "library()" command doesn't work
+
 ## try http:// if https:// URLs are not supported
+
+#install the latest version of bioconductor 
 #source("https://bioconductor.org/biocLite.R")
+
+
 #biocLite("BiocUpgrade")
 #biocLite("gdsfmt")
 library("gdsfmt")
@@ -37,13 +45,22 @@ library("gdsfmt")
 #biocLite("SNPRelate")
 library("SNPRelate")
 
+## try http:// if https:// URLs are not supported
+#source("https://bioconductor.org/biocLite.R")
+#biocLite("VariantAnnotation")
+library("VariantAnnotation")
+
 #Set working directory to uploaded files following re-analysis of the data
 setwd("C:/Users/Lauren/Dropbox/Pseudomonas_fromThunderHorse/VCFs/NoMods")
 
 #Use  your own VCF file
-vcf.fn <- "psamples_trim.vcf"
 
-vcf = readVcf("psamplestrim.vcf")
+#Only need to do this once to make the psamples.gds file
+#store the name of the VCF file as vcf.fn for ease later
+#vcf.fn <- "psamplestrim.vcf"
+
+#
+#vcf = readVcf(vcf.fn)
 
 #Reformat
 snpgdsVCF2GDS(vcf.fn, "psamples.gds", method = "copy.num.of.ref")
