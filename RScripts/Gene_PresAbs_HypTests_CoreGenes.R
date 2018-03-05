@@ -209,7 +209,7 @@ p = ggplot(data=NMDS_hyp1_df,aes(x,y,colour=Strain.type))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp1.png")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp1_corepan.png")
 #pdf("NMDS.pdf")
 
 ad_hyp1
@@ -321,7 +321,7 @@ p = ggplot(data=NMDS_hyp2_df,aes(x,y,colour=House))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp2.png")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp2_corepan.png")
 
 #pdf("NMDS.pdf")
 
@@ -424,7 +424,7 @@ p = ggplot(data=NMDS_hyp3_df,aes(x,y,colour=Area))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp3.png")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp3_corepan.png")
 #pdf("NMDS.pdf")
 
 ad_hyp3

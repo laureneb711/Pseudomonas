@@ -1,6 +1,9 @@
 #import the gene presence/absence table from roary
 gap = read.csv("C:/Users/Lauren/Dropbox/Pseudomonas_fromThunderHorse/gene_presence_absence.csv", header = T, stringsAsFactors = F)
 
+#Roary defines "cloud" as genes found in <7 genomes 
+gap = subset(gap, gap$No..isolates < 7)
+
 #rt = read.table("C:/Users/Lauren/Dropbox/Pseudomonas_fromThunderHorse/gene_presence_absence.rtab")
 
 #remove hypothetical proteins from the file
@@ -44,10 +47,10 @@ meta$Strain.type
 #looking for difference without any specific hypothesis
 ad_nohyp = adonis(dist ~ Strain.type, meta, perm = 200, method = "binary")
 
-NMDS=metaMDS(dm,k=2,trymax=1000, distance = "binary", wascores = T)
+NMDS=metaMDS(dm,k=2,trymax=10000, distance = "binary", wascores = T)
 
 stressplot(NMDS)
-plot(NMDS, col(meta$Strain.type))
+plot(NMDS)
 
 #plot in ggplot
 library(ggplot2)
@@ -141,7 +144,7 @@ head(dist_hyp1)
 
 ad_hyp1 = adonis(dist_hyp1 ~ Strain.type, meta_hyp1, perm = 200, method = "binary")
 
-NMDS_hyp1=metaMDS(dm_hyp1,k=2,trymax=1000, distance = "binary", wascores = T)
+NMDS_hyp1=metaMDS(dm_hyp1,k=2,trymax=10000, distance = "binary", wascores = T)
 
 stressplot(NMDS_hyp1)
 plot(NMDS_hyp1)
@@ -209,7 +212,7 @@ p = ggplot(data=NMDS_hyp1_df,aes(x,y,colour=Strain.type))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp1.png")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp1_Cloud.png")
 #pdf("NMDS.pdf")
 
 ad_hyp1
@@ -321,9 +324,7 @@ p = ggplot(data=NMDS_hyp2_df,aes(x,y,colour=House))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp2.png")
-
-#pdf("NMDS.pdf")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp2_Cloud.png")
 
 ad_hyp2
 
@@ -424,7 +425,7 @@ p = ggplot(data=NMDS_hyp3_df,aes(x,y,colour=Area))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp3.png")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp3_cloud.png")
 #pdf("NMDS.pdf")
 
 ad_hyp3

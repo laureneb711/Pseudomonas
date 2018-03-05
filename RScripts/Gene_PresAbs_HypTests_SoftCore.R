@@ -1,6 +1,10 @@
 #import the gene presence/absence table from roary
 gap = read.csv("C:/Users/Lauren/Dropbox/Pseudomonas_fromThunderHorse/gene_presence_absence.csv", header = T, stringsAsFactors = F)
 
+#Roary defines "SoftCore" as genes found in >44 genomes ad <47 
+gap = subset(gap, gap$No..isolates >= 44 &
+               gap$No..isolates < 47)
+
 #rt = read.table("C:/Users/Lauren/Dropbox/Pseudomonas_fromThunderHorse/gene_presence_absence.rtab")
 
 #remove hypothetical proteins from the file
@@ -47,7 +51,7 @@ ad_nohyp = adonis(dist ~ Strain.type, meta, perm = 200, method = "binary")
 NMDS=metaMDS(dm,k=2,trymax=1000, distance = "binary", wascores = T)
 
 stressplot(NMDS)
-plot(NMDS, col(meta$Strain.type))
+plot(NMDS)
 
 #plot in ggplot
 library(ggplot2)
@@ -209,7 +213,7 @@ p = ggplot(data=NMDS_hyp1_df,aes(x,y,colour=Strain.type))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp1.png")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp1_SoftCore.png")
 #pdf("NMDS.pdf")
 
 ad_hyp1
@@ -321,9 +325,7 @@ p = ggplot(data=NMDS_hyp2_df,aes(x,y,colour=House))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp2.png")
-
-#pdf("NMDS.pdf")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp2_SoftCore.png")
 
 ad_hyp2
 
@@ -413,6 +415,7 @@ NMDS.mean=aggregate(NMDS_hyp3_df[,1:2],list(group=NMDS_hyp3_df$Area),mean)
 
 NMDS.mean
 
+
 #Now do the actual plotting
 
 shape_values<-seq(1,16)
@@ -424,7 +427,7 @@ p = ggplot(data=NMDS_hyp3_df,aes(x,y,colour=Area))+
 
 p
 
-ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp3.png")
+ggsave("C:/Users/Lauren/Dropbox/Pseudomonas/NMDS_hyp3_SoftCore.png")
 #pdf("NMDS.pdf")
 
 ad_hyp3
